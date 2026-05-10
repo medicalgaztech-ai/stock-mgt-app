@@ -1,0 +1,6 @@
+ID_PRODUIT,Produit,Marque,Stock Actuel,Unité,Stock Minimum,Image
+P-0001,Bouteille Oxygène 5L,Air Liquide,22,unité,5,
+P-0002,Détendeur O2,Dräger,10,unité,3,
+P-0003,Masque Oxygène adulte,Vyaire,35,unité,10,
+P-0004,Prise murale tous gaz,MGT,18,unité,4,
+P-0005,Flexible gaz médical,MedicFlex,14,unité,5,
