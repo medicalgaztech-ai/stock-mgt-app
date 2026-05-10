@@ -1,0 +1,90 @@
+{
+  "appName": "Stock MGT",
+  "navigation": [
+    {
+      "label": "Saisie Mouvement",
+      "source": "Mouvements de Stock",
+      "style": "Table",
+      "columns": [
+        "Date",
+        "Type de Mouvement",
+        "Nom de la Personne",
+        "Client/Fournisseur",
+        "Service",
+        "Sous-Traitant",
+        "Image du Mouvement"
+      ],
+      "actions": {
+        "allowUsersToAddItems": true,
+        "allowUsersToEditItems": true
+      }
+    }
+  ],
+  "tables": {
+    "Mouvements de Stock": {
+      "csv": "mouvements.csv",
+      "rowId": "ID_MOUVEMENT",
+      "form": {
+        "title": "Ajouter un élément",
+        "destination": "Mouvements de Stock",
+        "components": [
+          { "type": "Date Time", "column": "Date", "required": true },
+          { "type": "Choice", "column": "Type de Mouvement", "options": ["Entrée", "Sortie", "Retour"], "required": true },
+          { "type": "Text Entry", "column": "Nom de la Personne", "required": true },
+          { "type": "Text Entry", "column": "Client/Fournisseur", "required": true },
+          { "type": "Text Entry", "column": "Service" },
+          { "type": "Text Entry", "column": "Sous-Traitant" },
+          { "type": "Image Picker", "column": "Image du Mouvement" }
+        ],
+        "onSubmit": "Show notification: Mouvement enregistré"
+      },
+      "detailScreen": {
+        "title": "Mouvement du {Date}",
+        "subtitle": "{Type de Mouvement}",
+        "components": [
+          { "type": "Button Block", "buttons": ["Générer Bon", "Éditer"] },
+          { "type": "Fields", "title": "Informations du Mouvement", "columns": ["Date", "Type de Mouvement", "Nom de la Personne", "Client/Fournisseur", "Service", "Sous-Traitant"] },
+          { "type": "Inline List", "source": "Relation Produits du Mouvement", "title": "Produits", "style": "List", "itemTitle": "Produit", "itemSubtitle": "Quantité" },
+          { "type": "Form Button", "label": "+ Add", "destination": "Lignes Produits" }
+        ]
+      },
+      "computedColumns": [
+        {
+          "name": "Type de Bon automatique",
+          "type": "If-Then-Else",
+          "rules": [
+            { "if": "Type de Mouvement is Entrée", "then": "Bon de Réception" },
+            { "if": "Type de Mouvement is Sortie", "then": "Bon de Livraison" },
+            { "if": "Type de Mouvement is Retour", "then": "Bon de Retour" }
+          ]
+        },
+        { "name": "Relation Produits du Mouvement", "type": "Relation", "match": "ID_MOUVEMENT -> Lignes Produits.ID_MOUVEMENT", "multiple": true },
+        { "name": "Nombre Produits", "type": "Rollup", "source": "Relation Produits du Mouvement", "operation": "Count" },
+        { "name": "Total Quantités", "type": "Rollup", "source": "Relation Produits du Mouvement.Quantité", "operation": "Sum" }
+      ]
+    },
+    "Lignes Produits": {
+      "csv": "lignes_mouvement.csv",
+      "rowId": "ID_LIGNE",
+      "form": {
+        "title": "Ajouter un élément",
+        "hiddenValues": [
+          { "column": "ID_MOUVEMENT", "value": "Current screen > ID_MOUVEMENT" }
+        ],
+        "components": [
+          { "type": "Text Entry or Choice", "column": "Produit", "required": true },
+          { "type": "Number Entry", "column": "Quantité", "required": true },
+          { "type": "Text Entry", "column": "Marque" },
+          { "type": "Image Picker", "column": "Image du Mouvement" }
+        ]
+      }
+    }
+  },
+  "bonScreen": {
+    "title": "{Type de Bon}",
+    "header": "SARL MGT (Medical Gas Technologie)",
+    "fields": ["Date", "Client/Fournisseur"],
+    "table": { "source": "Relation Produits du Mouvement", "columns": ["Produit", "Quantité"] },
+    "button": { "label": "Imprimer", "action": "Open link", "urlColumn": "pdf_url" }
+  }
+}
