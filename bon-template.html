@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bon MGT</title>
+  <style>
+    :root {
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --blue: #1d7ff2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #f3f4f6;
+    }
+    .phone-preview {
+      width: 430px;
+      min-height: 860px;
+      margin: 24px auto;
+      padding: 28px 22px;
+      background: #fff;
+      border-radius: 34px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .18);
+    }
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 90px;
+      gap: 18px;
+      align-items: start;
+      min-height: 160px;
+    }
+    .company h1 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+    .company strong { display: block; }
+    .company p {
+      margin: 10px 0 0;
+      font-size: 9px;
+      line-height: 1.35;
+      font-style: italic;
+    }
+    .logo {
+      width: 86px;
+      margin-top: 48px;
+    }
+    .title {
+      margin: 40px 0 34px;
+      font-size: 31px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .fields { margin-bottom: 36px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 20px;
+    }
+    .field-label { color: var(--muted); }
+    .field-value { text-align: right; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 18px;
+    }
+    th {
+      padding: 0 8px 11px;
+      text-align: left;
+      color: #374151;
+      font-size: 14px;
+      letter-spacing: .03em;
+    }
+    th:last-child, td:last-child { text-align: center; width: 110px; }
+    td {
+      padding: 15px 8px;
+      border-top: 1px solid var(--line);
+    }
+    .print-button {
+      display: block;
+      width: 100%;
+      margin-top: 44px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 14px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    @media print {
+      body { background: #fff; }
+      .phone-preview { width: auto; min-height: auto; margin: 0; box-shadow: none; border-radius: 0; }
+      .print-button { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone-preview">
+    <section class="header">
+      <div class="company">
+        <h1>
+          <strong>SARL MGT (Medical Gas Technologie)</strong>
+          Importation, Fabrication et Installation fluides médicaux
+        </h1>
+        <p>
+          14 Bis, Rue Azzaba - Hai Es Seddikia - Oran<br>
+          Agrément ministère N 062 du 03/03/2024<br>
+          RC : 13B0113817 - 00/31<br>
+          Capital social : 20 000 000.00 DA<br>
+          N Fiscal : 001301138170 A.1.31466436024<br>
+          E-mail : medical.gaztech@gmail.com
+        </p>
+      </div>
+      <img class="logo" src="../logo-mgt.png" alt="Logo MGT">
+    </section>
+
+    <h2 class="title">Bon de Réception</h2>
+
+    <section class="fields" aria-label="Informations du bon">
+      <div class="field-row">
+        <span class="field-label">Date</span>
+        <span class="field-value">6 mai 2026</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Fournisseur / Client</span>
+        <span class="field-value">test</span>
+      </div>
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>DESIGNATION</th>
+          <th>QTE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>test</td><td>2,00</td></tr>
+        <tr><td>test</td><td>2,00</td></tr>
+        <tr><td>test</td><td>4,00</td></tr>
+      </tbody>
+    </table>
+
+    <button class="print-button" onclick="window.print()">Imprimer</button>
+  </main>
+</body>
+</html>
