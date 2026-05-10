@@ -1,0 +1,9 @@
+ID_LIGNE,ID_MOUVEMENT,Produit,Quantité,Marque,Image du Mouvement
+LIG-0001,MVT-0001,Bouteille Oxygène 5L,4,Air Liquide,
+LIG-0002,MVT-0001,Détendeur O2,2,Dräger,
+LIG-0003,MVT-0002,Prise murale tous gaz,6,MGT,
+LIG-0004,MVT-0002,Masque Oxygène adulte,12,Vyaire,
+LIG-0005,MVT-0003,Flexible gaz médical,3,MedicFlex,
+LIG-0006,MVT-0004,test,2,test,
+LIG-0007,MVT-0004,test,2,test,logo-mgt.png
+LIG-0008,MVT-0004,test,4,test,
